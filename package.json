@@ -1,0 +1,48 @@
+{
+  "name": "sanguo-xiangqi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "三人中国象棋（三国象棋）联机对战平台：六边形棋盘、魏蜀吴三方实时对局",
+  "keywords": [
+    "xiangqi",
+    "chinese-chess",
+    "three-player",
+    "three-kingdoms",
+    "socket.io",
+    "multiplayer"
+  ],
+  "homepage": "https://github.com/XuYui/sanguo-xiangqi#readme",
+  "bugs": {
+    "url": "https://github.com/XuYui/sanguo-xiangqi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XuYui/sanguo-xiangqi.git"
+  },
+  "license": "MIT",
+  "author": "XuYui",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @sanguo/server",
+    "start": "npm run start --workspace @sanguo/server",
+    "build": "node tools/build.mjs",
+    "test": "npm run test --workspace @sanguo/core && npm run test --workspace @sanguo/server",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test",
+    "board:diagrams": "npm run diagrams --workspace @sanguo/core",
+    "board:export-web": "node --experimental-strip-types packages/core/tools/exportWeb.ts",
+    "svg2png": "python tools/svg2png.py"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "socket.io-client": "^4.8.4",
+    "typescript": "^7.0.2"
+  }
+}

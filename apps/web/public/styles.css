@@ -1,0 +1,568 @@
+/* 三人中国象棋 —— 界面样式
+   棋盘保留米黄纸面，外围界面统一为青黑漆面与古铜金质感。 */
+
+:root {
+  --paper: #fdf6e3;
+  --ink: #1f1b16;
+  --ink-soft: #6b6152;
+  --line: #d9cdb4;
+  --panel: #fffdf7;
+  --bg: #26221f;
+  --bg-2: #17191d;
+  --wei: #2563eb;
+  --shu: #dc2626;
+  --wu: #2f855a;
+  --accent: #f59e0b;
+  --good: #2a9d8f;
+  --bad: #c1121f;
+  --radius: 12px;
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+  --focus: rgba(245, 158, 11, .7);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background:
+    linear-gradient(160deg, rgba(24, 20, 17, .62), rgba(18, 20, 24, .72)),
+    url("assets/ink-lacquer-bg.jpg") center top / cover fixed,
+    radial-gradient(circle at 50% -20%, rgba(245, 158, 11, .10), transparent 42%),
+    linear-gradient(160deg, var(--bg), var(--bg-2));
+  color: #efe9dd;
+  font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app { display: flex; flex-direction: column; min-height: 100%; }
+
+/* ---------------- 顶栏 ---------------- */
+.topbar {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 12px 20px;
+  background: rgba(16, 14, 12, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .16);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+/* 站点图标：象棋棋子 + 魏蜀吴三色外圈 +「鼎」（三足鼎立），见 favicon.svg */
+.brand-mark { width: 40px; height: 40px; flex: none; display: block; }
+.brand-mark img { display: block; width: 40px; height: 40px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-text strong { font-size: 15px; letter-spacing: .5px; }
+.brand-text small { color: #b9ae9b; font-size: 11.5px; letter-spacing: 2px; }
+
+.room { display: flex; align-items: center; gap: 9px; }
+.room-label { color: #b9ae9b; font-size: 12.5px; }
+.room-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 19px; font-weight: 700; letter-spacing: 3px;
+  color: var(--accent);
+  background: rgba(245, 158, 11, .12);
+  padding: 3px 11px; border-radius: 8px;
+  border: 1px solid rgba(245, 158, 11, .3);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .08);
+}
+
+.conn { font-size: 12.5px; padding: 4px 10px; border-radius: 20px; }
+.conn.ok { color: #8fd6a8; background: rgba(60, 180, 110, .13); }
+.conn.bad { color: #ffb3b3; background: rgba(200, 60, 60, .16); }
+
+/* ---------------- 主体 ---------------- */
+.main {
+  /* align-items 用默认的 stretch：侧栏要撑满主区域高度，
+     否则它会按内容收缩（约 424px），`.card.grow` 的 flex:1 就没有可分配的高度，
+     聊天区只有 150px、下方留一大片空白。
+     棋盘本身不需要拉伸，用 .board-wrap 的 align-self 单独排除。 */
+  flex: 1; display: flex; gap: 18px; padding: 16px 18px;
+}
+.board-wrap {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; flex-direction: column; gap: 10px;
+  align-self: flex-start; /* 棋盘按自身尺寸，不跟着侧栏一起被拉伸 */
+}
+
+.banner {
+  padding: 9px 14px; border-radius: 10px; font-size: 14.5px; font-weight: 600;
+  background: rgba(255, 255, 255, .08); color: #ded4c2;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-left: 4px solid #7c7364;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, .10), inset 0 1px rgba(255, 255, 255, .04);
+  transition: background .2s, border-color .2s, color .2s;
+}
+.banner.kind-turn { background: rgba(42, 157, 143, .16); color: #9fe6da; border-left-color: var(--good); }
+.banner.kind-check { background: rgba(193, 18, 31, .18); color: #ffb0b0; border-left-color: var(--bad); }
+.banner.kind-win { background: rgba(245, 158, 11, .18); color: #ffd98a; border-left-color: var(--accent); }
+.banner.kind-lose, .banner.kind-over { background: rgba(120, 120, 130, .16); color: #cfc7ba; border-left-color: #8d8579; }
+
+.board {
+  width: 100%; max-width: min(74vh, 900px); margin: 0 auto;
+  aspect-ratio: 1; border-radius: var(--radius);
+  background: #7b4b2b url("assets/board-wood-texture.jpg") center / cover;
+  border: 1px solid rgba(255, 255, 255, .30);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, .34), 0 2px 0 rgba(255, 255, 255, .10) inset;
+  overflow: hidden;
+}
+.board-svg { display: block; width: 100%; height: 100%; }
+
+.piece { transition: opacity .15s, filter .15s; }
+.piece:hover { filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .22)); }
+.piece:not([data-owner]) { }
+/* 可交互提示：轮到自己时自己的子可点 */
+.board.can-move .piece { cursor: default; }
+
+.controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.btn {
+  padding: 8px 15px; border-radius: 9px; cursor: pointer; font-family: inherit;
+  font-size: 13.5px; font-weight: 600;
+  background: #3a352e; color: #f0e9dc; border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, .16);
+  transition: background .15s, border-color .15s, color .15s, transform .15s, box-shadow .15s;
+}
+.btn:hover:not(:disabled) { background: #4a443b; }
+.btn:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.btn:disabled { opacity: .42; cursor: not-allowed; }
+.btn.small { padding: 5px 11px; font-size: 12.5px; }
+.btn.ghost { background: transparent; color: #ded4c2; }
+.btn.danger { background: rgba(193, 18, 31, .2); color: #ffc0c0; border-color: rgba(193, 18, 31, .45); }
+.btn.danger:hover:not(:disabled) { background: rgba(193, 18, 31, .34); }
+.seat-hint { color: #a99e8c; font-size: 12.5px; }
+
+/* ---------------- 侧栏 ---------------- */
+.side {
+  width: 330px; flex: 0 0 330px;
+  display: flex; flex-direction: column; gap: 12px;
+  max-height: calc(100vh - 130px);
+}
+.card {
+  background: linear-gradient(150deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .035));
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: var(--radius); padding: 11px 12px;
+  display: flex; flex-direction: column; min-height: 0;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .12), inset 0 1px rgba(255, 255, 255, .04);
+}
+.card.grow { flex: 1 1 auto; }
+.card h3 {
+  margin: 0 0 9px; font-size: 12.5px; font-weight: 700;
+  letter-spacing: 1.5px; color: #c8bba5; text-transform: uppercase;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+/* 名牌 */
+.roster { display: flex; flex-direction: column; gap: 7px; }
+.roster-row {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 9px; border-radius: 9px;
+  background: rgba(0, 0, 0, .2);
+  border-left: 3px solid transparent;
+  transition: background .15s, border-color .15s, outline-color .15s, transform .15s;
+}
+.roster-row.is-turn {
+  border-left-color: var(--accent);
+  background: rgba(245, 158, 11, .13);
+  box-shadow: inset 0 0 0 1px rgba(245, 158, 11, .12);
+}
+.roster-row.is-out { opacity: .5; }
+.roster-row.is-me { outline: 1px solid rgba(255, 255, 255, .16); }
+.roster-row.is-pickable:hover { transform: translateY(-1px); }
+.roster-chip {
+  width: 28px; height: 28px; border-radius: 50%; flex: 0 0 28px;
+  display: grid; place-items: center;
+  background: var(--paper); color: var(--ink);
+  font-weight: 800; font-size: 14px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, .18);
+}
+.roster-info { flex: 1; min-width: 0; }
+.roster-name { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.roster-sub { font-size: 11.5px; color: #a99e8c; }
+.roster-note { font-size: 11px; color: #8c8474; }
+.roster-note.offline { color: #ffb3b3; }
+
+/* 损失 */
+.captured { display: flex; flex-direction: column; gap: 5px; }
+.captured-line { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; min-height: 22px; }
+.captured-label { font-size: 11.5px; color: #a99e8c; width: 42px; flex: 0 0 42px; }
+.captured-none { color: #6f685c; font-size: 12px; }
+.captured-piece {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 12px; font-weight: 700;
+  background: rgba(253, 246, 227, .9);
+}
+.captured-piece.p-wei { color: var(--wei); }
+.captured-piece.p-shu { color: var(--shu); }
+.captured-piece.p-wu { color: var(--wu); }
+
+/* 滚动区 */
+.scroll { overflow-y: auto; min-height: 60px; flex: 1 1 auto; scrollbar-width: thin; }
+.scroll::-webkit-scrollbar { width: 7px; }
+.scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .16); border-radius: 4px; }
+
+/* 聊天 */
+.chat { display: flex; flex-direction: column; gap: 4px; padding-right: 3px; }
+.chat-line { font-size: 13px; line-height: 1.45; }
+.chat-who { font-weight: 700; margin-right: 6px; color: #cfc7ba; }
+.chat-who.s-0 { color: #ff9b93; }
+.chat-who.s-1 { color: #93d996; }
+.chat-who.s-2 { color: #96b8ff; }
+.chat-text { color: #e2dad0; word-break: break-word; }
+.chat-form { display: flex; gap: 6px; margin-top: 9px; }
+.chat-form input {
+  flex: 1; min-width: 0; padding: 7px 10px; border-radius: 8px;
+  background: rgba(0, 0, 0, .3); color: #f0e9dc;
+  border: 1px solid rgba(255, 255, 255, .13); font-family: inherit; font-size: 13px;
+}
+.chat-form input::placeholder { color: #7d7566; }
+.chat-form input:focus { outline: 2px solid var(--focus); outline-offset: 1px; border-color: rgba(245, 158, 11, .55); }
+
+/* 页脚 */
+.foot {
+  padding: 8px 18px 14px; color: #8c8474; font-size: 12px;
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.foot-sep { opacity: .5; }
+
+/* 浮动提示 */
+.toast {
+  position: fixed; left: 50%; bottom: 34px; transform: translate(-50%, 18px);
+  background: rgba(20, 18, 16, .94); color: #f5efe4;
+  padding: 11px 20px; border-radius: 11px; font-size: 14px; font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, .13);
+  box-shadow: var(--shadow);
+  opacity: 0; pointer-events: none; transition: .22s;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------------- 基础 ---------------- */
+/**
+ * 让 HTML 的 `hidden` 属性真正生效。
+ *
+ * 浏览器默认样式里 `[hidden] { display: none }` 的优先级很低，
+ * 任何 `display: flex/grid/...` 的类都会把它覆盖掉——
+ * 于是 JS 里设了 `el.hidden = true` 元素**依然显示**。
+ * （本项目踩过：登录后「登录/注册」没消失、进房后「创建房间」没消失。）
+ */
+[hidden] { display: none !important; }
+
+/* ---------------- 房间操作（创建 / 加入） ---------------- */
+.room-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.join-group { display: flex; gap: 6px; }
+.join-input {
+  width: 92px;
+  font: inherit;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  background: rgba(255, 255, 255, .07);
+  color: #f5ecd8;
+}
+.join-input::placeholder { letter-spacing: 0; text-transform: none; color: #a99b83; }
+.join-input:focus { outline: 2px solid rgba(245, 158, 11, .5); outline-offset: 1px; }
+
+/* ---------------- 选势力（并入右侧「对局」面板的空位） ---------------- */
+.need-room {
+  font-size: 13.5px;
+  color: #cfc2a8;
+  background: rgba(255, 255, 255, .05);
+  border: 1px dashed rgba(255, 255, 255, .16);
+  border-radius: 10px;
+  padding: 9px 12px;
+  margin-bottom: 10px;
+}
+
+/* 空位 = 可点击的选势力入口。
+   注意 .roster-row 只设了 border-left，所以这里用 outline 做外框，
+   改 border-color 是无效的（曾因此看不到任何视觉反馈）。 */
+.roster-row.is-pickable {
+  cursor: pointer;
+  background: rgba(245, 158, 11, .08);
+  outline: 1px dashed rgba(245, 158, 11, .5);
+  outline-offset: -2px;
+}
+.roster-row.is-pickable:hover {
+  background: rgba(245, 158, 11, .2);
+  outline: 1px solid var(--accent);
+}
+.roster-row.is-pickable:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.roster-note.pick {
+  color: var(--accent);
+  font-weight: 700;
+}
+/* 自己的座位（开局前）：左侧亮条标注 */
+.roster-row.is-mine {
+  border-left-color: var(--accent);
+  background: rgba(245, 158, 11, .1);
+}
+
+@media (max-width: 620px) {
+  .room-actions { flex-wrap: wrap; }
+  .join-input { width: 76px; }
+}
+
+/* ---------------- 账号 ---------------- */
+.account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.account-guest,
+.account-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.account-hint {
+  font-size: 12.5px;
+  color: #d8c9a8;
+  background: rgba(245, 158, 11, .14);
+  border: 1px solid rgba(245, 158, 11, .32);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.account-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f3e9d2;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.btn.primary {
+  background: linear-gradient(180deg, #f7b23b, #e08c0b);
+  color: #2a1c00;
+  border-color: rgba(0, 0, 0, .18);
+  font-weight: 700;
+}
+.btn.primary:hover:not(:disabled) { background: linear-gradient(180deg, #ffc255, #eb9a17); }
+
+/* ---------------- 登录 / 注册对话框 ---------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.modal[hidden] { display: none; }
+.modal-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 10, 8, .68);
+  backdrop-filter: blur(3px);
+}
+.modal-card {
+  position: relative;
+  width: min(430px, 100%);
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 22px 18px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .42), 0 2px 0 rgba(255, 255, 255, .65) inset;
+  animation: modal-in .18s ease-out;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(10px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+.modal-title { margin: 0 0 6px; font-size: 19px; }
+.modal-sub { margin: 0 0 16px; font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  background: rgba(0, 0, 0, .05);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.tab {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tab.active { background: var(--panel); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .14); }
+
+.auth-form { display: grid; gap: 12px; }
+.field { display: grid; gap: 5px; }
+.field[hidden] { display: none; }
+.field-label { font-size: 12.5px; color: var(--ink-soft); }
+.field input {
+  font: inherit;
+  font-size: 14px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+}
+.field input:focus { outline: 2px solid rgba(245, 158, 11, .55); outline-offset: 1px; }
+
+.auth-error {
+  margin: 0;
+  font-size: 13px;
+  color: var(--bad);
+  background: rgba(193, 18, 31, .08);
+  border: 1px solid rgba(193, 18, 31, .22);
+  border-radius: 9px;
+  padding: 8px 10px;
+}
+.auth-error[hidden] { display: none; }
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+.modal-actions .btn { background: #ece5d5; color: var(--ink); border-color: var(--line); }
+.modal-actions .btn:hover:not(:disabled) { background: #e2d9c4; }
+.modal-actions .btn.primary { background: linear-gradient(180deg, #f7b23b, #e08c0b); color: #2a1c00; }
+
+button:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* 生成的材质只增强层次，不改变按钮尺寸、文字或交互状态。 */
+.btn {
+  background-image:
+    linear-gradient(rgba(71, 59, 45, .78), rgba(38, 31, 24, .9)),
+    url("assets/bronze-button-texture.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.btn:hover:not(:disabled) {
+  background-image:
+    linear-gradient(rgba(91, 73, 51, .72), rgba(50, 39, 28, .86)),
+    url("assets/bronze-button-texture.jpg");
+}
+.btn.primary {
+  background-image:
+    linear-gradient(rgba(247, 178, 59, .9), rgba(224, 140, 11, .93)),
+    url("assets/bronze-button-texture.jpg");
+}
+.btn.primary:hover:not(:disabled) {
+  background-image:
+    linear-gradient(rgba(255, 194, 85, .9), rgba(235, 154, 23, .93)),
+    url("assets/bronze-button-texture.jpg");
+}
+.btn.danger {
+  background-image:
+    linear-gradient(rgba(113, 30, 34, .73), rgba(62, 17, 20, .84)),
+    url("assets/bronze-button-texture.jpg");
+}
+.btn.danger:hover:not(:disabled) {
+  background-image:
+    linear-gradient(rgba(143, 43, 48, .73), rgba(81, 22, 25, .84)),
+    url("assets/bronze-button-texture.jpg");
+}
+.btn.ghost,
+.modal-actions .btn {
+  background-image: none;
+}
+.modal-actions .btn.primary {
+  background: linear-gradient(180deg, #f7b23b, #e08c0b);
+  color: #2a1c00;
+}
+/* 顶栏与右侧状态卡片共用同一张青黑漆面材质，统一页面层次。 */
+.topbar,
+.card {
+  background-image:
+    linear-gradient(rgba(15, 21, 27, .76), rgba(25, 20, 17, .84)),
+    url("assets/ink-panel-surface.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.topbar {
+  background-position: center 38%;
+}
+.card {
+  background-position: center;
+}
+
+/* 三方状态行使用同一张材质，再用势力色区分魏、蜀、吴。 */
+.roster-row {
+  --faction: #c8bba5;
+  --faction-soft: rgba(200, 187, 165, .14);
+  background-image:
+    linear-gradient(rgba(16, 24, 31, .72), rgba(34, 25, 19, .84)),
+    url("assets/status-slot-texture.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.roster-row.seat-0 { --faction: #60a5fa; --faction-soft: rgba(37, 99, 235, .18); }
+.roster-row.seat-1 { --faction: #f87171; --faction-soft: rgba(220, 38, 38, .18); }
+.roster-row.seat-2 { --faction: #72c78c; --faction-soft: rgba(47, 133, 90, .18); }
+.roster-row.is-turn,
+.roster-row.is-mine,
+.roster-row.is-pickable {
+  border-left-color: var(--faction);
+  background-image:
+    linear-gradient(var(--faction-soft), rgba(23, 24, 24, .8)),
+    url("assets/status-slot-texture.jpg");
+}
+.roster-row.is-pickable.seat-0 { outline-color: rgba(96, 165, 250, .68); }
+.roster-row.is-pickable.seat-1 { outline-color: rgba(248, 113, 113, .68); }
+.roster-row.is-pickable.seat-2 { outline-color: rgba(114, 199, 140, .68); }
+.roster-row.is-pickable:hover {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .08), var(--faction-soft)),
+    url("assets/status-slot-texture.jpg");
+}
+
+/* 未登录访客：参战类按钮置灰 */
+.btn.needs-login { opacity: .5; }
+
+/* ---------------- 图例（棋盘下方） ---------------- */
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.legend-item svg { flex: 0 0 auto; }
+
+/* ---------------- 响应式 ---------------- */
+@media (max-width: 1080px) {
+  .main { flex-direction: column; }
+  .side { width: 100%; flex: 1 1 auto; max-height: none; flex-direction: row; flex-wrap: wrap; }
+  .side .card { flex: 1 1 260px; }
+  .board { max-width: min(88vw, 720px); }
+}
+@media (max-width: 620px) {
+  .topbar { gap: 12px; padding: 9px 12px; }
+  .main { padding: 12px; gap: 12px; }
+  .room-code { font-size: 17px; letter-spacing: 2px; }
+  .side { flex-direction: column; }
+  .foot { display: none; }
+}

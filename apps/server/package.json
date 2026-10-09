@@ -1,0 +1,18 @@
+{
+  "name": "@sanguo/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "三人象棋联机服务：房间邀请码 / 观战 / 断线重连",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "node --experimental-strip-types --watch src/index.ts",
+    "start": "node --experimental-strip-types src/index.ts",
+    "test": "node --experimental-strip-types --test \"test/**/*.test.ts\" --test-concurrency=1"
+  },
+  "dependencies": {
+    "@sanguo/core": "*",
+    "socket.io": "^4.8.4"
+  }
+}

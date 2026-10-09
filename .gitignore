@@ -1,0 +1,40 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+.build/
+
+# 运行时数据（SQLite）
+*.db
+*.db-shm
+*.db-wal
+
+# 环境变量
+.env
+.env.*
+!.env.example
+
+# 临时 / 中间产物
+.tmp/
+*.tmp
+*.log
+backups/
+
+# 棋盘生成器的输出（只提交 preview.png）
+tools/board-generator/三人象棋棋盘.svg
+tools/board-generator/board_data.json
+tools/board-generator/example_midgame.svg
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 编辑器 / 系统 / 本地工具
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+.playwright-cli/

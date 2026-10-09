@@ -1,0 +1,1982 @@
+{
+ "meta": {
+  "name": "三人中国象棋（三国象棋 / 三國棋）",
+  "model_space": "正六边形外接圆半径 R = 1，坐标原点 = 棋盘中心，y 轴向下",
+  "files_per_player": 9,
+  "ranks_per_player": 5,
+  "palace": {
+   "files": [
+    4,
+    5,
+    6
+   ],
+   "ranks": [
+    1,
+    2,
+    3
+   ]
+  },
+  "coordinate_convention": "file 1..9 自该家左手边数起；rank 1 = 底线，rank 5 最靠中央",
+  "rank_letter_map": {
+   "wei": [
+    "E",
+    "D",
+    "C",
+    "B",
+    "A"
+   ],
+   "wu": [
+    "O",
+    "N",
+    "M",
+    "L",
+    "K"
+   ],
+   "shu": [
+    "J",
+    "I",
+    "H",
+    "G",
+    "F"
+   ]
+  },
+  "rivers": {
+   "chibi": {
+    "text": "赤壁",
+    "between": [
+     "wei",
+     "wu"
+    ]
+   },
+   "qishan": {
+    "text": "祁山",
+    "between": [
+     "wei",
+     "shu"
+    ]
+   },
+   "jingzhou": {
+    "text": "荆州",
+    "between": [
+     "wu",
+     "shu"
+    ]
+   }
+  }
+ },
+ "hexagon": {
+  "R": 1.0,
+  "vertices": {
+   "V1": [
+    -0.5,
+    0.8660254037844386
+   ],
+   "V2": [
+    0.5,
+    0.8660254037844386
+   ],
+   "RV": [
+    1.0,
+    0.0
+   ],
+   "TR": [
+    0.5,
+    -0.8660254037844386
+   ],
+   "TL": [
+    -0.5,
+    -0.8660254037844386
+   ],
+   "LV": [
+    -1.0,
+    0.0
+   ]
+  }
+ },
+ "centre_triangle": {
+  "circumradius": 0.17,
+  "vertices": {
+   "wei": [
+    0.0,
+    0.17
+   ],
+   "wu": [
+    -0.14722431864335458,
+    -0.08499999999999996
+   ],
+   "shu": [
+    0.14722431864335458,
+    -0.08499999999999996
+   ]
+  }
+ },
+ "rivers": {
+  "chibi": {
+   "text": "赤壁",
+   "between": [
+    "wei",
+    "wu"
+   ]
+  },
+  "qishan": {
+   "text": "祁山",
+   "between": [
+    "wei",
+    "shu"
+   ]
+  },
+  "jingzhou": {
+   "text": "荆州",
+   "between": [
+    "wu",
+    "shu"
+   ]
+  }
+ },
+ "setup": {
+  "description": "初始布局（标准象棋半边摆法，三家相同）；坐标为各家本地 (file, rank)",
+  "pieces_per_player": 16,
+  "layout": [
+   {
+    "file": 1,
+    "rank": 1,
+    "piece": "車"
+   },
+   {
+    "file": 2,
+    "rank": 1,
+    "piece": "馬"
+   },
+   {
+    "file": 3,
+    "rank": 1,
+    "piece": "相"
+   },
+   {
+    "file": 4,
+    "rank": 1,
+    "piece": "仕"
+   },
+   {
+    "file": 5,
+    "rank": 1,
+    "piece": "帥"
+   },
+   {
+    "file": 6,
+    "rank": 1,
+    "piece": "仕"
+   },
+   {
+    "file": 7,
+    "rank": 1,
+    "piece": "相"
+   },
+   {
+    "file": 8,
+    "rank": 1,
+    "piece": "馬"
+   },
+   {
+    "file": 9,
+    "rank": 1,
+    "piece": "車"
+   },
+   {
+    "file": 2,
+    "rank": 3,
+    "piece": "炮"
+   },
+   {
+    "file": 8,
+    "rank": 3,
+    "piece": "炮"
+   },
+   {
+    "file": 1,
+    "rank": 4,
+    "piece": "兵"
+   },
+   {
+    "file": 3,
+    "rank": 4,
+    "piece": "兵"
+   },
+   {
+    "file": 5,
+    "rank": 4,
+    "piece": "兵"
+   },
+   {
+    "file": 7,
+    "rank": 4,
+    "piece": "兵"
+   },
+   {
+    "file": 9,
+    "rank": 4,
+    "piece": "兵"
+   }
+  ]
+ },
+ "players": {
+  "wei": {
+   "name": "魏",
+   "colour": "#2563eb",
+   "rotation_deg": 0.0,
+   "neighbours": [
+    "wu",
+    "shu"
+   ],
+   "rank_letters": [
+    "E",
+    "D",
+    "C",
+    "B",
+    "A"
+   ],
+   "centre_triangle_vertex": [
+    0.0,
+    0.17
+   ],
+   "initial_pieces": [
+    {
+     "file": 1,
+     "rank": 1,
+     "piece": "車",
+     "x": -0.5,
+     "y": 0.866025
+    },
+    {
+     "file": 2,
+     "rank": 1,
+     "piece": "馬",
+     "x": -0.375,
+     "y": 0.866025
+    },
+    {
+     "file": 3,
+     "rank": 1,
+     "piece": "相",
+     "x": -0.25,
+     "y": 0.866025
+    },
+    {
+     "file": 4,
+     "rank": 1,
+     "piece": "仕",
+     "x": -0.125,
+     "y": 0.866025
+    },
+    {
+     "file": 5,
+     "rank": 1,
+     "piece": "帥",
+     "x": 0.0,
+     "y": 0.866025
+    },
+    {
+     "file": 6,
+     "rank": 1,
+     "piece": "仕",
+     "x": 0.125,
+     "y": 0.866025
+    },
+    {
+     "file": 7,
+     "rank": 1,
+     "piece": "相",
+     "x": 0.25,
+     "y": 0.866025
+    },
+    {
+     "file": 8,
+     "rank": 1,
+     "piece": "馬",
+     "x": 0.375,
+     "y": 0.866025
+    },
+    {
+     "file": 9,
+     "rank": 1,
+     "piece": "車",
+     "x": 0.5,
+     "y": 0.866025
+    },
+    {
+     "file": 2,
+     "rank": 3,
+     "piece": "炮",
+     "x": -0.458333,
+     "y": 0.634685
+    },
+    {
+     "file": 8,
+     "rank": 3,
+     "piece": "炮",
+     "x": 0.458333,
+     "y": 0.634685
+    },
+    {
+     "file": 1,
+     "rank": 4,
+     "piece": "兵",
+     "x": -0.666667,
+     "y": 0.57735
+    },
+    {
+     "file": 3,
+     "rank": 4,
+     "piece": "兵",
+     "x": -0.333333,
+     "y": 0.460678
+    },
+    {
+     "file": 5,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.0,
+     "y": 0.344006
+    },
+    {
+     "file": 7,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.333333,
+     "y": 0.460678
+    },
+    {
+     "file": 9,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.666667,
+     "y": 0.57735
+    }
+   ],
+   "points": [
+    {
+     "file": 1,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": -0.5,
+     "y": 0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": -0.375,
+     "y": 0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": -0.25,
+     "y": 0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": -0.125,
+     "y": 0.866025,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": 0.0,
+     "y": 0.866025,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": 0.125,
+     "y": 0.866025,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": 0.25,
+     "y": 0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": 0.375,
+     "y": 0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 1,
+     "rank_letter": "E",
+     "x": 0.5,
+     "y": 0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": -0.555556,
+     "y": 0.7698,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": -0.416667,
+     "y": 0.750355,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": -0.277778,
+     "y": 0.73091,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": -0.138889,
+     "y": 0.711464,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": 0.0,
+     "y": 0.692019,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": 0.138889,
+     "y": 0.711464,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": 0.277778,
+     "y": 0.73091,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": 0.416667,
+     "y": 0.750355,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 2,
+     "rank_letter": "D",
+     "x": 0.555556,
+     "y": 0.7698,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": -0.611111,
+     "y": 0.673575,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": -0.458333,
+     "y": 0.634685,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": -0.305556,
+     "y": 0.595794,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": -0.152778,
+     "y": 0.556903,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": 0.0,
+     "y": 0.518013,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": 0.152778,
+     "y": 0.556903,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": 0.305556,
+     "y": 0.595794,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": 0.458333,
+     "y": 0.634685,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 3,
+     "rank_letter": "C",
+     "x": 0.611111,
+     "y": 0.673575,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": -0.666667,
+     "y": 0.57735,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": -0.5,
+     "y": 0.519014,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": -0.333333,
+     "y": 0.460678,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": -0.166667,
+     "y": 0.402342,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": 0.0,
+     "y": 0.344006,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": 0.166667,
+     "y": 0.402342,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": 0.333333,
+     "y": 0.460678,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": 0.5,
+     "y": 0.519014,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 4,
+     "rank_letter": "B",
+     "x": 0.666667,
+     "y": 0.57735,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": -0.722222,
+     "y": 0.481125,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 2,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": -0.541667,
+     "y": 0.403344,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 3,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": -0.361111,
+     "y": 0.325563,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 4,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": -0.180556,
+     "y": 0.247781,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 5,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": 0.0,
+     "y": 0.17,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 6,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": 0.180556,
+     "y": 0.247781,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 7,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": 0.361111,
+     "y": 0.325563,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 8,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": 0.541667,
+     "y": 0.403344,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 9,
+     "rank": 5,
+     "rank_letter": "A",
+     "x": 0.722222,
+     "y": 0.481125,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    }
+   ]
+  },
+  "shu": {
+   "name": "蜀",
+   "colour": "#dc2626",
+   "rotation_deg": -120.0,
+   "neighbours": [
+    "wei",
+    "wu"
+   ],
+   "rank_letters": [
+    "J",
+    "I",
+    "H",
+    "G",
+    "F"
+   ],
+   "centre_triangle_vertex": [
+    0.14722431864335458,
+    -0.08499999999999996
+   ],
+   "initial_pieces": [
+    {
+     "file": 1,
+     "rank": 1,
+     "piece": "車",
+     "x": 1.0,
+     "y": 0.0
+    },
+    {
+     "file": 2,
+     "rank": 1,
+     "piece": "馬",
+     "x": 0.9375,
+     "y": -0.108253
+    },
+    {
+     "file": 3,
+     "rank": 1,
+     "piece": "相",
+     "x": 0.875,
+     "y": -0.216506
+    },
+    {
+     "file": 4,
+     "rank": 1,
+     "piece": "仕",
+     "x": 0.8125,
+     "y": -0.32476
+    },
+    {
+     "file": 5,
+     "rank": 1,
+     "piece": "帥",
+     "x": 0.75,
+     "y": -0.433013
+    },
+    {
+     "file": 6,
+     "rank": 1,
+     "piece": "仕",
+     "x": 0.6875,
+     "y": -0.541266
+    },
+    {
+     "file": 7,
+     "rank": 1,
+     "piece": "相",
+     "x": 0.625,
+     "y": -0.649519
+    },
+    {
+     "file": 8,
+     "rank": 1,
+     "piece": "馬",
+     "x": 0.5625,
+     "y": -0.757772
+    },
+    {
+     "file": 9,
+     "rank": 1,
+     "piece": "車",
+     "x": 0.5,
+     "y": -0.866025
+    },
+    {
+     "file": 2,
+     "rank": 3,
+     "piece": "炮",
+     "x": 0.77882,
+     "y": 0.079586
+    },
+    {
+     "file": 8,
+     "rank": 3,
+     "piece": "炮",
+     "x": 0.320486,
+     "y": -0.714271
+    },
+    {
+     "file": 1,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.833333,
+     "y": 0.288675
+    },
+    {
+     "file": 3,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.565626,
+     "y": 0.058336
+    },
+    {
+     "file": 5,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.297918,
+     "y": -0.172003
+    },
+    {
+     "file": 7,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.232292,
+     "y": -0.519014
+    },
+    {
+     "file": 9,
+     "rank": 4,
+     "piece": "兵",
+     "x": 0.166667,
+     "y": -0.866025
+    }
+   ],
+   "points": [
+    {
+     "file": 1,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 1.0,
+     "y": 0.0,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.9375,
+     "y": -0.108253,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.875,
+     "y": -0.216506,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.8125,
+     "y": -0.32476,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.75,
+     "y": -0.433013,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.6875,
+     "y": -0.541266,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.625,
+     "y": -0.649519,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.5625,
+     "y": -0.757772,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 1,
+     "rank_letter": "J",
+     "x": 0.5,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.944444,
+     "y": 0.096225,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.85816,
+     "y": -0.014334,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.771875,
+     "y": -0.124892,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.685591,
+     "y": -0.235451,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.599306,
+     "y": -0.34601,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.546702,
+     "y": -0.476013,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.494097,
+     "y": -0.606017,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.441493,
+     "y": -0.736021,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 2,
+     "rank_letter": "I",
+     "x": 0.388889,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.888889,
+     "y": 0.19245,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.77882,
+     "y": 0.079586,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.668751,
+     "y": -0.033278,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.558681,
+     "y": -0.146142,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.448612,
+     "y": -0.259006,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.405904,
+     "y": -0.410761,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.363195,
+     "y": -0.562516,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.320486,
+     "y": -0.714271,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 3,
+     "rank_letter": "H",
+     "x": 0.277778,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.833333,
+     "y": 0.288675,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.69948,
+     "y": 0.173506,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.565626,
+     "y": 0.058336,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.431772,
+     "y": -0.056834,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.297918,
+     "y": -0.172003,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.265105,
+     "y": -0.345509,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.232292,
+     "y": -0.519014,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.19948,
+     "y": -0.69252,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 4,
+     "rank_letter": "G",
+     "x": 0.166667,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.777778,
+     "y": 0.3849,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 2,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.620139,
+     "y": 0.267425,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 3,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.462501,
+     "y": 0.14995,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 4,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.304863,
+     "y": 0.032475,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 5,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.147224,
+     "y": -0.085,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 6,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.124307,
+     "y": -0.280256,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 7,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.10139,
+     "y": -0.475513,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 8,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.078473,
+     "y": -0.670769,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 9,
+     "rank": 5,
+     "rank_letter": "F",
+     "x": 0.055556,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    }
+   ]
+  },
+  "wu": {
+   "name": "吴",
+   "colour": "#2f855a",
+   "rotation_deg": 120.0,
+   "neighbours": [
+    "shu",
+    "wei"
+   ],
+   "rank_letters": [
+    "O",
+    "N",
+    "M",
+    "L",
+    "K"
+   ],
+   "centre_triangle_vertex": [
+    -0.14722431864335458,
+    -0.08499999999999996
+   ],
+   "initial_pieces": [
+    {
+     "file": 1,
+     "rank": 1,
+     "piece": "車",
+     "x": -0.5,
+     "y": -0.866025
+    },
+    {
+     "file": 2,
+     "rank": 1,
+     "piece": "馬",
+     "x": -0.5625,
+     "y": -0.757772
+    },
+    {
+     "file": 3,
+     "rank": 1,
+     "piece": "相",
+     "x": -0.625,
+     "y": -0.649519
+    },
+    {
+     "file": 4,
+     "rank": 1,
+     "piece": "仕",
+     "x": -0.6875,
+     "y": -0.541266
+    },
+    {
+     "file": 5,
+     "rank": 1,
+     "piece": "帥",
+     "x": -0.75,
+     "y": -0.433013
+    },
+    {
+     "file": 6,
+     "rank": 1,
+     "piece": "仕",
+     "x": -0.8125,
+     "y": -0.32476
+    },
+    {
+     "file": 7,
+     "rank": 1,
+     "piece": "相",
+     "x": -0.875,
+     "y": -0.216506
+    },
+    {
+     "file": 8,
+     "rank": 1,
+     "piece": "馬",
+     "x": -0.9375,
+     "y": -0.108253
+    },
+    {
+     "file": 9,
+     "rank": 1,
+     "piece": "車",
+     "x": -1.0,
+     "y": 0.0
+    },
+    {
+     "file": 2,
+     "rank": 3,
+     "piece": "炮",
+     "x": -0.320486,
+     "y": -0.714271
+    },
+    {
+     "file": 8,
+     "rank": 3,
+     "piece": "炮",
+     "x": -0.77882,
+     "y": 0.079586
+    },
+    {
+     "file": 1,
+     "rank": 4,
+     "piece": "兵",
+     "x": -0.166667,
+     "y": -0.866025
+    },
+    {
+     "file": 3,
+     "rank": 4,
+     "piece": "兵",
+     "x": -0.232292,
+     "y": -0.519014
+    },
+    {
+     "file": 5,
+     "rank": 4,
+     "piece": "兵",
+     "x": -0.297918,
+     "y": -0.172003
+    },
+    {
+     "file": 7,
+     "rank": 4,
+     "piece": "兵",
+     "x": -0.565626,
+     "y": 0.058336
+    },
+    {
+     "file": 9,
+     "rank": 4,
+     "piece": "兵",
+     "x": -0.833333,
+     "y": 0.288675
+    }
+   ],
+   "points": [
+    {
+     "file": 1,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.5,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.5625,
+     "y": -0.757772,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.625,
+     "y": -0.649519,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.6875,
+     "y": -0.541266,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.75,
+     "y": -0.433013,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.8125,
+     "y": -0.32476,
+     "palace": true,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.875,
+     "y": -0.216506,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -0.9375,
+     "y": -0.108253,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 1,
+     "rank_letter": "O",
+     "x": -1.0,
+     "y": 0.0,
+     "palace": false,
+     "back_rank": true,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.388889,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.441493,
+     "y": -0.736021,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.494097,
+     "y": -0.606017,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.546702,
+     "y": -0.476013,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.599306,
+     "y": -0.34601,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.685591,
+     "y": -0.235451,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.771875,
+     "y": -0.124892,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.85816,
+     "y": -0.014334,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 2,
+     "rank_letter": "N",
+     "x": -0.944444,
+     "y": 0.096225,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.277778,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.320486,
+     "y": -0.714271,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.363195,
+     "y": -0.562516,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.405904,
+     "y": -0.410761,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.448612,
+     "y": -0.259006,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.558681,
+     "y": -0.146142,
+     "palace": true,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.668751,
+     "y": -0.033278,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.77882,
+     "y": 0.079586,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 3,
+     "rank_letter": "M",
+     "x": -0.888889,
+     "y": 0.19245,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.166667,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 2,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.19948,
+     "y": -0.69252,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 3,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.232292,
+     "y": -0.519014,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 4,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.265105,
+     "y": -0.345509,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 5,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.297918,
+     "y": -0.172003,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 6,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.431772,
+     "y": -0.056834,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 7,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.565626,
+     "y": 0.058336,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 8,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.69948,
+     "y": 0.173506,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 9,
+     "rank": 4,
+     "rank_letter": "L",
+     "x": -0.833333,
+     "y": 0.288675,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": false
+    },
+    {
+     "file": 1,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.055556,
+     "y": -0.866025,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 2,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.078473,
+     "y": -0.670769,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 3,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.10139,
+     "y": -0.475513,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 4,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.124307,
+     "y": -0.280256,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 5,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.147224,
+     "y": -0.085,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 6,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.304863,
+     "y": 0.032475,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 7,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.462501,
+     "y": 0.14995,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 8,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.620139,
+     "y": 0.267425,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    },
+    {
+     "file": 9,
+     "rank": 5,
+     "rank_letter": "K",
+     "x": -0.777778,
+     "y": 0.3849,
+     "palace": false,
+     "back_rank": false,
+     "river_rank": true
+    }
+   ]
+  }
+ }
+}

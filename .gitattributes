@@ -1,0 +1,6 @@
+# 仓库内统一使用 LF 换行
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary

@@ -1,0 +1,19 @@
+{
+  "name": "@sanguo/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "三人象棋核心：棋盘拓扑、走法生成、棋规引擎、对局状态机",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./board": "./src/board.ts",
+    "./rules": "./src/moves.ts",
+    "./state": "./src/state.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test \"test/**/*.test.ts\"",
+    "diagrams": "node --experimental-strip-types tools/diagrams.ts"
+  }
+}

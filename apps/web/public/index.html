@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三人中国象棋 · 三国象棋联机对战</title>
+<meta name="description" content="六边形三人中国象棋（三国象棋）在线对战：魏、蜀、吴三方同局，房间邀请码、实时观战。">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=20261009-oss1">
+<link rel="stylesheet" href="styles.css?v=20261009-oss1">
+<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+<div class="app">
+
+  <!-- 顶栏 -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="favicon.svg?v=20261009-oss1" alt="" width="40" height="40">
+      </span>
+      <div class="brand-text">
+        <strong>三人中国象棋</strong>
+        <small>魏 · 蜀 · 吴</small>
+      </div>
+    </div>
+
+    <!-- 进房前：创建 / 加入房间 -->
+    <div class="room-actions" id="room-actions">
+      <button class="btn small primary" id="btn-create-room" type="button">创建房间</button>
+      <div class="join-group">
+        <input class="join-input" id="join-code" type="text" placeholder="房间码"
+               maxlength="8" autocomplete="off" aria-label="输入房间码">
+        <button class="btn small" id="btn-join-room" type="button">加入房间</button>
+      </div>
+    </div>
+
+    <!-- 进房后：显示房间码 -->
+    <div class="room" id="room-panel" hidden>
+      <span class="room-label">房间码</span>
+      <span class="room-code" id="room-code">——</span>
+      <button class="btn small" id="btn-copy" type="button">复制邀请链接</button>
+      <button class="btn small ghost" id="btn-leave-room" type="button">换房间</button>
+    </div>
+
+    <div class="account" id="account-box">
+      <!-- 未登录 -->
+      <div class="account-guest" id="account-guest">
+        <span class="account-hint">观战中</span>
+        <button class="btn small primary" id="btn-open-auth" type="button">登录 / 注册</button>
+      </div>
+      <!-- 已登录 -->
+      <div class="account-user" id="account-user" hidden>
+        <span class="account-name" id="account-name">—</span>
+        <button class="btn small" id="btn-logout" type="button">退出</button>
+      </div>
+    </div>
+
+    <div class="conn ok" id="conn">正在连接…</div>
+  </header>
+
+  <!-- 主体 -->
+  <main class="main">
+    <section class="board-wrap">
+      <div class="banner kind-wait" id="banner">准备中…</div>
+      <div class="board" id="board"></div>
+      <!-- 未进房提示 -->
+      <div class="need-room" id="need-room">
+        选择上方「创建房间」或输入房间码「加入房间」开始。
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="btn-start" type="button" hidden>立即开局</button>
+        <button class="btn ghost" id="btn-leave-seat" type="button" hidden>让出势力</button>
+        <button class="btn danger" id="btn-resign" type="button">认输</button>
+        <span class="seat-hint" id="seat-hint"></span>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="card">
+        <h3>对局</h3>
+        <div id="roster"></div>
+      </div>
+
+      <div class="card">
+        <h3>损失</h3>
+        <div id="captured"></div>
+      </div>
+
+      <div class="card grow">
+        <h3>聊天</h3>
+        <div class="scroll chat" id="chat"></div>
+        <form class="chat-form" id="chat-form">
+          <input id="chat-input" type="text" maxlength="200" placeholder="说点什么…" autocomplete="off">
+          <button class="btn small" type="submit">发送</button>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <!-- 图例：把「绿点 / 红圈」的含义写清楚，避免把吃子标记误认为禁止 -->
+    <span class="legend">
+      <span class="legend-item">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+          <circle cx="6" cy="6" r="5" fill="#2a9d8f" opacity="0.85"/>
+        </svg>
+        绿点 = 可以走到这里
+      </span>
+      <span class="legend-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+          <circle cx="7" cy="7" r="5.5" fill="none" stroke="#c1121f" stroke-width="2.5"/>
+        </svg>
+        红圈 = 可以吃掉这里的敌子
+      </span>
+      <span class="legend-item">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+          <circle cx="7" cy="7" r="5.5" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+        </svg>
+        橙圈 = 你选中的子
+      </span>
+    </span>
+    <span class="foot-sep">·</span>
+    <span>点击自己的棋子选中，再点标记落子 · 右键取消选中</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- 登录 / 注册对话框 -->
+<div class="modal" id="auth-modal" hidden>
+  <div class="modal-mask" id="auth-mask"></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <h2 class="modal-title" id="auth-title">登录后才能参战</h2>
+    <p class="modal-sub" id="auth-sub">
+      账号会记住你在哪个房间、坐哪个座位、轮到你走——刷新或换设备回来都能接着下。
+    </p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" id="tab-login" type="button" role="tab">登录</button>
+      <button class="tab" id="tab-register" type="button" role="tab">注册新账号</button>
+    </div>
+
+    <form class="auth-form" id="auth-form" autocomplete="on">
+      <label class="field">
+        <span class="field-label">用户名</span>
+        <input id="auth-username" name="username" type="text" autocomplete="username"
+               placeholder="3~16 位字母、数字或下划线" required>
+      </label>
+
+      <label class="field" id="field-nickname" hidden>
+        <span class="field-label">昵称（其他人看到的名字）</span>
+        <input id="auth-nickname" name="nickname" type="text" autocomplete="nickname"
+               placeholder="留空则用用户名" maxlength="16">
+      </label>
+
+      <label class="field">
+        <span class="field-label">密码</span>
+        <input id="auth-password" name="password" type="password" autocomplete="current-password"
+               placeholder="至少 6 位" required>
+      </label>
+
+      <p class="auth-error" id="auth-error" hidden></p>
+
+      <div class="modal-actions">
+        <button class="btn" id="btn-auth-skip" type="button">先观战</button>
+        <button class="btn primary" id="btn-auth-submit" type="submit">登录</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="app/app.js?v=20261009-oss1"></script>
+</body>
+</html>
+
+
