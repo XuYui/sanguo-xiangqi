@@ -15,17 +15,31 @@
 import { execFileSync } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, unlinkSync, writeFileSync } from 'node:fs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
 const BUILD = join(ROOT, '.build');
 
+/**
+ * 递归删除目录。不用 fs.rmSync：它在 Windows + 中文路径下会静默什么都不删
+ * （与 cpSync 崩溃是同一类问题），导致旧文件残留进构建产物。
+ */
+function removeDir(dir) {
+  if (!existsSync(dir)) return;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const p = join(dir, entry.name);
+    if (entry.isDirectory()) removeDir(p);
+    else unlinkSync(p);
+  }
+  rmdirSync(dir);
+}
+
 // ---------------------------------------------------------------------------
 // 1) 编译 TypeScript
 // ---------------------------------------------------------------------------
 console.log('[build] 编译 TypeScript…');
-rmSync(DIST, { recursive: true, force: true });
+removeDir(DIST);
 execFileSync(
   process.execPath,
   [join(ROOT, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.build.json'],
@@ -113,7 +127,11 @@ writeFileSync(join(DIST, 'manifest.json'), JSON.stringify(manifest, null, 1), 'u
 // 注意：不用 fs.cpSync / copyFileSync —— 它们在 Windows + 中文路径下会以
 // 0xC0000409（STATUS_STACK_BUFFER_OVERRUN）崩溃；逐个读写文件则稳定。
 console.log(`[build] 组装到 ${BUILD}`);
-rmSync(BUILD, { recursive: true, force: true });
+removeDir(BUILD);
+if (existsSync(BUILD)) {
+  console.error('[build] ❌ 无法清空 .build/，请手动删除后重试');
+  process.exit(1);
+}
 
 function copyFile(src, dst) {
   mkdirSync(dirname(dst), { recursive: true });
